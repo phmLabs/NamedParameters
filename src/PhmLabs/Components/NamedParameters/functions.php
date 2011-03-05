@@ -2,6 +2,14 @@
 
 namespace PhmLabs\Components\NamedParameters;
 
+/**
+ * This function is used to call a function/method with named parameters. This means
+ * the parameters are given as an associative array and will be ordered to fit the
+ * function signature.
+ *
+ * @param call_back $function
+ * @param array $param_arr
+ */
 function call_user_func_assoc_array($function, array $param_arr = null)
 {
   $namedParameters = new NamedParameters();

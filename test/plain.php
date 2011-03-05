@@ -16,4 +16,5 @@ function c($arg1, $arg2)
 }
 
 \PhmLabs\Components\NamedParameters\call_user_func_assoc_array('c', array( 'arg2' => 'Argument2', 'arg1' => 'Argument1'));
+echo "\n";
 \PhmLabs\Components\NamedParameters\call_user_func_assoc_array(array( new A, 'b'), array( 'arg2' => 'Argument2', 'arg1' => 'Argument1'));

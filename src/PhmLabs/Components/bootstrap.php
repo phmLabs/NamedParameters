@@ -1,6 +1,6 @@
 <?php
 
-// @todo how to handle function files
+// @todo how to handle functions.php files
 include_once 'NamedParameters/functions.php';
 
 function PhmLabs_Components__Autoload($className)
