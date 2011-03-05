@@ -7,6 +7,7 @@ namespace PhmLabs\Components\NamedParameters;
  * using the NamesParameters class.
  *
  * @author Nils Langner <langner@phmlabs.com>
+ * @link http://www.phmlabs.com/Components/NamedParameters
  */
 class Exception extends \Exception
 {

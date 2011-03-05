@@ -7,7 +7,10 @@ namespace PhmLabs\Components\NamedParameters;
  * the parameters are given as an associative array and will be ordered to fit the
  * function signature.
  *
+ * @todo add unit tests
+ *
  * @author Nils Langner <langner@phmlabs.com>
+ * @link http://www.phmlabs.com/Components/NamedParameters
  */
 class NamedParameters
 {
