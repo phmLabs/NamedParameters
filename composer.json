@@ -7,6 +7,6 @@
     "homepage": "https://www.thewebhatesme.com",
     "license": "MIT",
     "autoload": {
-        "psr-0": { "phmLabs\\Components\\NamedParameters\\": "" }
+        "psr-0": { "phmLabs\\Components\\": "" }
     }
 }
