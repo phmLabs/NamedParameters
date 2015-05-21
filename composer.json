@@ -8,5 +8,5 @@
     "license": "MIT",
     "autoload": {
         "psr-4": { "phmLabs\\Component\\NamedParameters\\": "" }
-    },
+    }
 }
