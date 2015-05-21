@@ -45,6 +45,7 @@ class NamedParameters
         $reflectedMethod = $reflectedListener->getMethod($method);
         $methodParameters = $reflectedMethod->getParameters();
         $orderedParameters = $this->getOrderedParameters($methodParameters, $parameters);
+
         return $this->callUserFunc(array($object, $method), $orderedParameters);
     }
 
@@ -69,6 +70,7 @@ class NamedParameters
     {
         foreach ($functionParameters as $parameter) {
             $name = $parameter->getName();
+
             if (array_key_exists($name, $actualParameters)) {
                 $orderedParameters[] = $actualParameters[$name];
             } else {
@@ -93,5 +95,16 @@ class NamedParameters
             $returnValue = $namedParameters->callFunction($function, $param_arr);
         }
         return $returnValue;
+    }
+
+    public static function normalizeParameters(array $params)
+    {
+        $parameters = array();
+        foreach ($params as $parameter) {
+            foreach ($parameter as $key => $value) {
+                $parameters[$key] = $value;
+            }
+        }
+        return $parameters;
     }
 }
