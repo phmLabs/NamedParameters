@@ -101,6 +101,9 @@ class NamedParameters
     {
         $parameters = array();
         foreach ($params as $parameter) {
+            if(!is_array($parameter)) {
+                throw new \RuntimeException("The given parameters can not be converted.");
+            }
             foreach ($parameter as $key => $value) {
                 $parameters[$key] = $value;
             }
