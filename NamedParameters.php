@@ -68,6 +68,8 @@ class NamedParameters
      */
     private function getOrderedParameters($functionParameters, array $actualParameters = array())
     {
+        $orderedParameters = array();
+
         foreach ($functionParameters as $parameter) {
             $name = $parameter->getName();
 
