@@ -1,6 +1,5 @@
 {
     "name": "phmlabs/namedparameters",
-    "version": "1.0.0", 
     "type": "library",
     "description": "phmLabs library for named parameters",
     "keywords": [],
