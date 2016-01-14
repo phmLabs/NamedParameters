@@ -44,8 +44,12 @@ class NamedParameters
         $reflectedListener = new \ReflectionClass($object);
         $reflectedMethod = $reflectedListener->getMethod($method);
         $methodParameters = $reflectedMethod->getParameters();
-        $orderedParameters = $this->getOrderedParameters($methodParameters, $parameters);
 
+        try {
+            $orderedParameters = $this->getOrderedParameters($methodParameters, $parameters);
+        } catch (Exception $e) {
+            throw new Exception('Unable calling ' . get_class($object). ':' . $method . ' with message: ' . $e->getMessage());
+        }
         return $this->callUserFunc(array($object, $method), $orderedParameters);
     }
 
@@ -103,7 +107,7 @@ class NamedParameters
     {
         $parameters = array();
         foreach ($params as $parameter) {
-            if(!is_array($parameter)) {
+            if (!is_array($parameter)) {
                 throw new \RuntimeException("The given parameters can not be converted.");
             }
             foreach ($parameter as $key => $value) {
