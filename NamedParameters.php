@@ -48,7 +48,7 @@ class NamedParameters
         try {
             $orderedParameters = $this->getOrderedParameters($methodParameters, $parameters);
         } catch (Exception $e) {
-            throw new Exception('Unable calling ' . get_class($object). ':' . $method . ' with message: ' . $e->getMessage());
+            throw new Exception('Unable calling ' . get_class($object) . ':' . $method . ' with message: ' . $e->getMessage());
         }
         return $this->callUserFunc(array($object, $method), $orderedParameters);
     }
@@ -68,7 +68,9 @@ class NamedParameters
      * This function returns the list of the ordared parameters
      *
      * @param array $functionParameters The paramaters the function expects $functionParameters
-     * @param string $actualParameters The given parameters
+     * @param array $actualParameters The given parameters
+     * @return array
+     * @throws \Exception
      */
     private function getOrderedParameters($functionParameters, array $actualParameters = array())
     {
@@ -101,6 +103,31 @@ class NamedParameters
             $returnValue = $namedParameters->callFunction($function, $param_arr);
         }
         return $returnValue;
+    }
+
+    /**
+     * @param $className
+     * @param array|null $param_arr
+     * @return mixed
+     * @throws Exception
+     * @throws \ReflectionException
+     */
+    public static function construct($className, array $param_arr = null)
+    {
+        $namedParameters = new self();
+
+        $reflectedListener = new \ReflectionClass($className);
+        $reflectedMethod = $reflectedListener->getMethod('__construct');
+        $methodParameters = $reflectedMethod->getParameters();
+
+        try {
+            $orderedParameters = $namedParameters->getOrderedParameters($methodParameters, $param_arr);
+            $object = new $className(...$orderedParameters);
+        } catch (\Exception $e) {
+            throw new Exception('Unable calling ' . $className . ':__construct with message: ' . $e->getMessage());
+        }
+
+        return $object;
     }
 
     public static function normalizeParameters(array $params)
