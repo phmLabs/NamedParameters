@@ -42,7 +42,11 @@ class NamedParameters
     public function callMethod($object, $method, array $parameters = array())
     {
         $reflectedListener = new \ReflectionClass($object);
-        $reflectedMethod = $reflectedListener->getMethod($method);
+        try {
+            $reflectedMethod = $reflectedListener->getMethod($method);
+        } catch (\ReflectionException $e) {
+            throw new Exception('call method (' . get_class($object) . '::' . $method . ' failed. ' . $e->getMessage());
+        }
         $methodParameters = $reflectedMethod->getParameters();
 
         try {
